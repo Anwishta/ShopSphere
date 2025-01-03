@@ -4,19 +4,21 @@
     "version": 2,
     "builds": [
         {
-            "src": "index.js",
+            "src": "api/server.js",
             "use": "@vercel/node"
-        },
-        {
-            "src": "src/**/*",
-            "use": "@vercel/static"
         }
     ],
 
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/api/server.js"
+            "dest": "api/server.js",
+            "methods": ["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+            "headers": {
+                "Access-Control-Allow-Origin": "https://shop-sphere-2n6k.vercel.app/" ,
+                "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
+                "Access-Control-Allow-Credentials" : "true"
+            }
         }
     ]
 }
