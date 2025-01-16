@@ -62,17 +62,17 @@ const Footer = () => {
             <div className="grid grid-cols-2 gap-8">
               <ul className="space-y-3">
                 <li>
-                  <a href="/help" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
+                  <a href="/help?notfound=true" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
                     Help Center
                   </a>
                 </li>
                 <li>
-                  <a href="/returns" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
+                  <a href="/returns?notfound=true" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
                     Returns & Refunds
                   </a>
                 </li>
                 <li>
-                  <a href="/shipping" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
+                  <a href="/shipping?notfound=true" className="text-sm text-gray-400 hover:text-[#EC4899] transition-colors duration-200">
                     Shipping Info
                   </a>
                 </li>
