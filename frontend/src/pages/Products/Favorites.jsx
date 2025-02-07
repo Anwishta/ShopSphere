@@ -9,6 +9,7 @@ const Favorites = () => {
   const favorites = useSelector((state) => state.favorites?.favorites || []);
   const { addToCart } = useCart();
   const [sortBy, setSortBy] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   // Optimize sorting using useMemo to avoid unnecessary recalculations
   const filteredFavorites = useMemo(() => {
@@ -33,23 +34,33 @@ const Favorites = () => {
           </p>
         </div>
 
-        {/* Centered Sorting Dropdown */}
-        <div className="text-center mb-6">
-          <label htmlFor="sortBy" className="text-white font-semibold mr-4">
-            Sort By:
-          </label>
-          <select
-            id="sortBy"
-            className="px-4 py-2 rounded bg-gray-300 text-black font-semibold"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
+        {/* Custom Sorting Dropdown */}
+        <div className="text-center mb-8 relative inline-block">
+          <label className="text-white font-semibold mr-4">Sort By: Price</label>
+          <div
+            className="px-4 py-2 rounded bg-gray-300 text-black font-semibold cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-400"
+            onClick={() => setIsOpen(!isOpen)}
           >
-            <option value="" disabled>
-              Select
-            </option>
-            <option value="cheapest">Price: The cheapest</option>
-            <option value="expensive">Price: The most expensive</option>
-          </select>
+            {sortBy ? (sortBy === "cheapest" ? "Price: The cheapest" : "Price: The most expensive") : "Select"}
+          </div>
+          {isOpen && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-300 rounded-md shadow-md z-10 transition-all duration-300 ease-in-out transform scale-95 opacity-0 hover:scale-100 hover:opacity-100">
+              <div className="py-2">
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("cheapest"); setIsOpen(false); }}
+                >
+                  The cheapest
+                </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("expensive"); setIsOpen(false); }}
+                >
+                  The most expensive
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mx-16 my-16">
@@ -95,7 +106,7 @@ const Favorites = () => {
               </p>
               <Link
                 to="/shop"
-                className="bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-colors inline-block"
+                className="bg-pink-500 text-white px-6 py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-600 cursor-pointer"
               >
                 Go Shopping
               </Link>
