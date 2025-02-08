@@ -65,11 +65,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-y-0 left-0 w-72 ${
-          isDarkMode 
-            ? 'bg-gradient-to-t from-gray-900 to-gray-800 text-gray-100' 
-            : 'bg-gradient-to-t from-gray-100 to-white text-gray-800'
-        } transform ${
+        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-black text-white transform ${
           showMobileMenu ? "translate-x-0" : "-translate-x-full"
         } transition-transform duration-300 ease-in-out z-40 overflow-hidden`}
       >
@@ -78,59 +74,49 @@ const Navigation = () => {
           <div className="flex flex-col space-y-6">
             <Link 
               to="/" 
-              className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}
+              className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
-              <AiOutlineHome size={28} />
+              <AiOutlineHome size={26} />
               <span className="text-lg">HOME</span>
             </Link>
             <Link 
               to="/shop" 
-              className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}
+              className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
-              <AiOutlineShopping size={28} />
+              <AiOutlineShopping size={26} />
               <span className="text-lg">SHOP</span>
             </Link>
             <Link 
               to="/cart" 
-              className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}
+              className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
-              <AiOutlineShoppingCart size={28} />
+              <AiOutlineShoppingCart size={26} />
               <span className="text-lg">CART</span>
             </Link>
             <Link 
               to="/favorite" 
-              className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}
+              className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
-              <FaHeart size={28} />
+              <FaHeart size={26} />
               <span className="text-lg">FAVORITE</span>
               <FavoriteCount />
             </Link>
             <Link 
               to="/blogs" 
-              className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}
+              className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
-              <FaBlog size={28} />
+              <FaBlog size={26} />
               <span className="text-lg">BLOGS</span>
             </Link>
           </div>
 
           {/* User Section */}
-          <div className={`mt-6 border-t ${isDarkMode ? 'border-gray-700' : 'border-gray-200'} pt-6`}>
+          <div className="mt-6 border-t border-gray-700 pt-6">
             {userInfo ? (
               <div className="space-y-4">
                 <div className="pb-4">
@@ -140,45 +126,35 @@ const Navigation = () => {
                   <div className="space-y-3">
                     <Link 
                       to="/admin/dashboard" 
-                      className={`block p-2 ${
-                        isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                      } rounded-lg`}
+                      className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Dashboard
                     </Link>
                     <Link 
                       to="/admin/productlist" 
-                      className={`block p-2 ${
-                        isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                      } rounded-lg`}
+                      className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Products
                     </Link>
                     <Link 
                       to="/admin/categorylist" 
-                      className={`block p-2 ${
-                        isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                      } rounded-lg`}
+                      className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Category
                     </Link>
                     <Link 
                       to="/admin/orderlist" 
-                      className={`block p-2 ${
-                        isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                      } rounded-lg`}
+                      className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Orders
                     </Link>
                     <Link 
                       to="/admin/userlist" 
-                      className={`block p-2 ${
-                        isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                      } rounded-lg`}
+                      className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Users
@@ -187,9 +163,7 @@ const Navigation = () => {
                 )}
                 <Link 
                   to="/profile" 
-                  className={`block p-2 ${
-                    isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                  } rounded-lg`}
+                  className="block p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
                   Profile
@@ -199,9 +173,7 @@ const Navigation = () => {
                     logoutHandler();
                     setShowMobileMenu(false);
                   }} 
-                  className={`w-full text-left p-2 ${
-                    isDarkMode ? 'hover:bg-gray-800' : 'hover:bg-gray-100'
-                  } rounded-lg`}
+                  className="w-full text-left p-2 hover:bg-gray-800 rounded-lg"
                 >
                   Logout
                 </button>
@@ -210,22 +182,18 @@ const Navigation = () => {
               <div className="space-y-4">
                 <Link 
                   to="/login" 
-                  className={`flex items-center space-x-4 p-2 ${
-                    isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-                  } transition-colors duration-200`}
+                  className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
-                  <AiOutlineLogin size={28} />
+                  <AiOutlineLogin size={26} />
                   <span className="text-lg">LOGIN</span>
                 </Link>
                 <Link 
                   to="/register" 
-                  className={`flex items-center space-x-4 p-2 ${
-                    isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-                  } transition-colors duration-200`}
+                  className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
-                  <AiOutlineUserAdd size={28} />
+                  <AiOutlineUserAdd size={26} />
                   <span className="text-lg">REGISTER</span>
                 </Link>
               </div>
@@ -235,55 +203,39 @@ const Navigation = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className={`hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-4 ${
-        isDarkMode 
-          ? 'bg-gradient-to-t from-gray-900 to-gray-800 text-gray-100' 
-          : 'bg-gradient-to-t from-gray-100 to-white text-gray-800'
-      } h-[100vh] transition-all duration-300 ease-in-out z-40`} id="navigation-container">
+      <div className="hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-4 text-white bg-black h-[100vh] transition-all duration-300 ease-in-out z-40" id="navigation-container">
         <div className="flex flex-col space-y-8">
           {/* Main navigation links */}
-          <Link to="/" className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
-            <AiOutlineHome size={28} className="nav-icon" />
-            <span className="nav-item-name ml-4 text-lg">HOME</span>
+          <Link to="/" className="flex items-center hover:translate-x-2 transition-transform p-2">
+            <AiOutlineHome className="nav-icon" />
+            <span className="nav-item-name ml-4">HOME</span>
           </Link>
-          <Link to="/shop" className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
-            <AiOutlineShopping size={28} className="nav-icon" />
-            <span className="nav-item-name ml-4 text-lg">SHOP</span>
+          <Link to="/shop" className="flex items-center hover:translate-x-2 transition-transform p-2">
+            <AiOutlineShopping className="nav-icon" />
+            <span className="nav-item-name ml-4">SHOP</span>
           </Link>
-          <Link to="/cart" className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
+          <Link to="/cart" className="flex items-center hover:translate-x-2 transition-transform p-2">
             <AiOutlineShoppingCart className="nav-icon" />
-            <span className="nav-item-name ml-4 text-lg">CART</span>
+            <span className="nav-item-name ml-4">CART</span>
           </Link>
-          <Link to="/favorite" className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
+          <Link to="/favorite" className="flex items-center hover:translate-x-2 transition-transform p-2">
             <FaHeart className="nav-icon" />
-            <span className="nav-item-name ml-4 text-lg">FAVORITE <FavoriteCount /></span>
+            <span className="nav-item-name ml-4">FAVORITE <FavoriteCount /></span>
           </Link>
-          <Link to="/blogs" className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
+          <Link to="/blogs" className="flex items-center hover:translate-x-2 transition-transform p-2">
             <FaBlog className="nav-icon" />
-            <span className="nav-item-name ml-4 text-lg">BLOGS</span>
+            <span className="nav-item-name ml-4">BLOGS</span>
           </Link>
-          <button onClick={toggleTheme} className={`flex items-center hover:translate-x-2 transition-transform p-2 ${
-            isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-          }`}>
+          <button onClick={toggleTheme} className="flex items-center hover:translate-x-2 transition-transform p-2">
             {isDarkMode ? (
               <>
-                <BsSun size={28} className="nav-icon" />
-                <span className="nav-item-name ml-4 text-lg">Light Mode</span>
+                <BsSun className="nav-icon" />
+                <span className="nav-item-name ml-4">Light Mode</span>
               </>
             ) : (
               <>
-                <BsMoon size={28} className="nav-icon" />
-                <span className="nav-item-name ml-4 text-lg">Dark Mode</span>
+                <BsMoon className="nav-icon" />
+                <span className="nav-item-name ml-4">Dark Mode</span>
               </>
             )}
           </button>
@@ -294,24 +246,18 @@ const Navigation = () => {
             <div className="relative">
               <button 
                 onClick={() => setDropdownOpen(!dropdownOpen)}
-                className={`flex items-center hover:translate-x-2 transition-transform p-2 w-full ${
-                  isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-                }`}
+                className="flex items-center hover:translate-x-2 transition-transform p-2 w-full"
               >
-                <span className="nav-icon text-2xl">👤</span>
-                <span className="nav-item-name ml-4 text-lg">{userInfo.username}</span>
+                <span className="nav-icon">👤</span>
+                <span className="nav-item-name ml-4">{userInfo.username}</span>
               </button>
               
               {dropdownOpen && (
-                <div className={`absolute bottom-full left-0 mb-2 w-full ${
-                  isDarkMode ? 'bg-gray-800' : 'bg-white'
-                } rounded-lg shadow-lg overflow-hidden`}>
+                <div className="absolute bottom-full left-0 mb-2 w-full bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                   {userInfo.isAdmin && (
                     <Link 
                       to="/admin/dashboard" 
-                      className={`block px-4 py-2 ${
-                        isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
-                      } w-full text-left`}
+                      className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Dashboard
@@ -319,9 +265,7 @@ const Navigation = () => {
                   )}
                   <Link 
                     to="/profile" 
-                    className={`block px-4 py-2 ${
-                      isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
-                    } w-full text-left`}
+                    className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                     onClick={() => setDropdownOpen(false)}
                   >
                     Profile
@@ -331,9 +275,7 @@ const Navigation = () => {
                       logoutHandler();
                       setDropdownOpen(false);
                     }} 
-                    className={`block px-4 py-2 ${
-                      isDarkMode ? 'hover:bg-gray-700' : 'hover:bg-gray-100'
-                    } w-full text-left`}
+                    className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                   >
                     Logout
                   </button>
@@ -342,17 +284,13 @@ const Navigation = () => {
             </div>
           ) : (
             <div className="space-y-4">
-              <Link to="/login" className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}>
-                <AiOutlineLogin size={28} className="nav-icon" />
-                <span className="nav-item-name text-lg">LOGIN</span>
+              <Link to="/login" className="flex items-center hover:translate-x-2 transition-transform p-2">
+                <AiOutlineLogin className="nav-icon" />
+                <span className="nav-item-name">LOGIN</span>
               </Link>
-              <Link to="/register" className={`flex items-center space-x-4 p-2 ${
-                isDarkMode ? 'hover:text-rose-400' : 'hover:text-rose-500'
-              } transition-colors duration-200`}>
-                <AiOutlineUserAdd size={28} className="nav-icon" />
-                <span className="nav-item-name text-lg">REGISTER</span>
+              <Link to="/register" className="flex items-center hover:translate-x-2 transition-transform p-2">
+                <AiOutlineUserAdd className="nav-icon" />
+                <span className="nav-item-name">REGISTER</span>
               </Link>
             </div>
           )}
