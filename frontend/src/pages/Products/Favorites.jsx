@@ -34,27 +34,34 @@ const Favorites = () => {
           </p>
         </div>
 
-
         {/* Custom Sorting Dropdown */}
         <div className="text-center mb-8 relative inline-block">
           <label className="text-white font-semibold mr-4">Sort By: Price</label>
           <div
             className="px-4 py-2 rounded bg-gray-300 text-black font-semibold cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-400"
             onClick={() => setIsOpen(!isOpen)}
-
-        <div className="text-right">
-          <label
-            htmlFor="sortBy"
-            className="text-white font-semibold mr-4"
           >
-            Sort By:
-          </label>
-          <select
-            id="sortBy"
-            className="px-4 py-2 rounded bg-gray-300 text-black font-semibold cursor-pointer"
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value)}
-
+            {sortBy ? (sortBy === "cheapest" ? "Price: The cheapest" : "Price: The most expensive") : "Select"}
+          </div>
+          {isOpen && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-300 rounded-md shadow-md z-10 transition-all duration-300 ease-in-out transform scale-95 opacity-0 hover:scale-100 hover:opacity-100">
+              <div className="py-2">
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("cheapest"); setIsOpen(false); }}
+                >
+                  The cheapest
+                </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("expensive"); setIsOpen(false); }}
+                >
+                  The most expensive
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mx-16 my-16">
           {filteredFavorites.length > 0 ? (
