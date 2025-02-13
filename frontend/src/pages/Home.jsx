@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import HomeImage from "../assets/HomeFinal.png";
 import NewsletterSection from "../components/NewsLetter";
 import { useTheme } from '../context/ThemeContext';
+import OurServices from "../components/OurServices";
 
 const Home = () => {
   const { keyword } = useParams();
@@ -81,6 +82,8 @@ const Home = () => {
               />
             </div>
           </section>
+          {/* Add OurServices component here */}
+          <OurServices />
           <Footer />
         </div>
       )}

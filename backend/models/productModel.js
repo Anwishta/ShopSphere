@@ -78,6 +78,14 @@ const productSchema = new mongoose.Schema({
         // required: true,
         default: 0
     },
+    specifications: {
+        type: Map,
+        of: String,
+        default: new Map()
+    },
+    additionalImages: [{
+        type: String
+    }],
 }, {timestamps: true})
 
 const Product = mongoose.model('Product', productSchema);

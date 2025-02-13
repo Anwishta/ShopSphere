@@ -65,39 +65,38 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       <div
-        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-black text-white transform ${
-          showMobileMenu ? "translate-x-0" : "-translate-x-full"
-        } transition-transform duration-300 ease-in-out z-40 overflow-hidden`}
+        className={`lg:hidden fixed inset-y-0 left-0 w-72 bg-black text-white transform ${showMobileMenu ? "translate-x-0" : "-translate-x-full"
+          } transition-transform duration-300 ease-in-out z-40 overflow-hidden`}
       >
         <div className="flex flex-col h-full p-6 mt-16">
           {/* Main Navigation Links */}
           <div className="flex flex-col space-y-6">
-            <Link 
-              to="/" 
+            <Link
+              to="/"
               className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
               <AiOutlineHome size={26} />
               <span className="text-lg">HOME</span>
             </Link>
-            <Link 
-              to="/shop" 
+            <Link
+              to="/shop"
               className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
               <AiOutlineShopping size={26} />
               <span className="text-lg">SHOP</span>
             </Link>
-            <Link 
-              to="/cart" 
+            <Link
+              to="/cart"
               className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
               <AiOutlineShoppingCart size={26} />
               <span className="text-lg">CART</span>
             </Link>
-            <Link 
-              to="/favorite" 
+            <Link
+              to="/favorite"
               className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
@@ -105,8 +104,8 @@ const Navigation = () => {
               <span className="text-lg">FAVORITE</span>
               <FavoriteCount />
             </Link>
-            <Link 
-              to="/blogs" 
+            <Link
+              to="/blogs"
               className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
               onClick={() => setShowMobileMenu(false)}
             >
@@ -124,36 +123,36 @@ const Navigation = () => {
                 </div>
                 {userInfo.isAdmin && (
                   <div className="space-y-3">
-                    <Link 
-                      to="/admin/dashboard" 
+                    <Link
+                      to="/admin/dashboard"
                       className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Dashboard
                     </Link>
-                    <Link 
-                      to="/admin/productlist" 
+                    <Link
+                      to="/admin/productlist"
                       className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Products
                     </Link>
-                    <Link 
-                      to="/admin/categorylist" 
+                    <Link
+                      to="/admin/categorylist"
                       className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Category
                     </Link>
-                    <Link 
-                      to="/admin/orderlist" 
+                    <Link
+                      to="/admin/orderlist"
                       className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
                       Orders
                     </Link>
-                    <Link 
-                      to="/admin/userlist" 
+                    <Link
+                      to="/admin/userlist"
                       className="block p-2 hover:bg-gray-800 rounded-lg"
                       onClick={() => setShowMobileMenu(false)}
                     >
@@ -161,18 +160,18 @@ const Navigation = () => {
                     </Link>
                   </div>
                 )}
-                <Link 
-                  to="/profile" 
+                <Link
+                  to="/profile"
                   className="block p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
                   Profile
                 </Link>
-                <button 
+                <button
                   onClick={() => {
                     logoutHandler();
                     setShowMobileMenu(false);
-                  }} 
+                  }}
                   className="w-full text-left p-2 hover:bg-gray-800 rounded-lg"
                 >
                   Logout
@@ -180,16 +179,16 @@ const Navigation = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                <Link 
-                  to="/login" 
+                <Link
+                  to="/login"
                   className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
                   <AiOutlineLogin size={26} />
                   <span className="text-lg">LOGIN</span>
                 </Link>
-                <Link 
-                  to="/register" 
+                <Link
+                  to="/register"
                   className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
                 >
@@ -203,7 +202,9 @@ const Navigation = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-4 text-white bg-black h-[100vh] transition-all duration-300 ease-in-out z-40" id="navigation-container">
+      <div className={`hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-5 h-[100vh] transition-all duration-300 ease-in-out z-40
+        ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`} 
+        id="navigation-container">
         <div className="flex flex-col space-y-8">
           {/* Main navigation links */}
           <Link to="/" className="flex items-center hover:translate-x-2 transition-transform p-2">
@@ -244,37 +245,37 @@ const Navigation = () => {
         <div className="auth-buttons">
           {userInfo ? (
             <div className="relative">
-              <button 
+              <button
                 onClick={() => setDropdownOpen(!dropdownOpen)}
                 className="flex items-center hover:translate-x-2 transition-transform p-2 w-full"
               >
                 <span className="nav-icon">👤</span>
                 <span className="nav-item-name ml-4">{userInfo.username}</span>
               </button>
-              
+
               {dropdownOpen && (
                 <div className="absolute bottom-full left-0 mb-2 w-full bg-gray-800 rounded-lg shadow-lg overflow-hidden">
                   {userInfo.isAdmin && (
-                    <Link 
-                      to="/admin/dashboard" 
+                    <Link
+                      to="/admin/dashboard"
                       className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                       onClick={() => setDropdownOpen(false)}
                     >
                       Dashboard
                     </Link>
                   )}
-                  <Link 
-                    to="/profile" 
+                  <Link
+                    to="/profile"
                     className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                     onClick={() => setDropdownOpen(false)}
                   >
                     Profile
                   </Link>
-                  <button 
+                  <button
                     onClick={() => {
                       logoutHandler();
                       setDropdownOpen(false);
-                    }} 
+                    }}
                     className="block px-4 py-2 hover:bg-gray-700 w-full text-left"
                   >
                     Logout
