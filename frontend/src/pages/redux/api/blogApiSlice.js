@@ -23,6 +23,16 @@ export const blogApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Blog"],
         }),
+        deleteBlog: builder.mutation({
+            query: (id) => ({
+                url: `${BLOG_URL}/${id}`,
+                method: 'DELETE',
+            }),
+            invalidatesTags: (result, error, id) => [
+                { type: 'Blog', id },
+                { type: 'Blog', id: 'LIST' },
+            ],
+        }),
         toggleBlogLike: builder.mutation({
             query: (id) => ({
                 url: `${BLOG_URL}/${id}/like`,
@@ -78,6 +88,7 @@ export const {
     useGetBlogsQuery,
     useGetBlogQuery,
     useCreateBlogMutation,
+    useDeleteBlogMutation,
     useToggleBlogLikeMutation,
     useGetCommentsQuery,
     useCreateCommentMutation,
