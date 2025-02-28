@@ -7,11 +7,16 @@ import { GoRepoForked } from "react-icons/go";
 import { FaPeopleLine } from "react-icons/fa6";
 import { PiUserCircleDashedFill } from "react-icons/pi";
 import Scrollbtn from "../../components/scrollbtn";
+import CertificateGenerator from "./CertificateGenerator";
+import { XCircle } from "lucide-react";
+
 
 function Contributors() {
   const [allcontributors, setAllContributors] = useState([]);
   const [repoData, setRepoData] = useState({});
   const [totalContributions, setTotalContributions] = useState(null);
+  const [selectedContributor, setSelectedContributor] = useState(null);
+
 
   useEffect(() => {
     const fetchContributors = async () => {
@@ -49,6 +54,10 @@ function Contributors() {
     fetchContributors();
   }, []);
 
+  const handleAddCertificate = (contributor) => {
+    setSelectedContributor(contributor);
+  };
+
   return (
     <>
       <Scrollbtn />
@@ -85,6 +94,41 @@ function Contributors() {
                 key={index}
                 className="flex justify-center items-center p-4 rounded-xl bg-gray-200 dark:bg-[#1b2743] gap-2 shadow-lg transition-transform duration-300 hover:scale-105"
               >
+
+                <img
+                  src={contributor.avatar_url}
+                  alt="avatar"
+                  className="w-36 h-36 rounded-full object-cover border-2 border-emerald-400 shadow-md hover:border-emerald-300 transition-colors duration-300"
+                />
+                <div className="flex flex-col gap-2 w-full">
+                  <div className="info flex items-center gap-1 text-white overflow-hidden">
+                    <PiUserCircleDashedFill className="text-3xl" />
+                    <span className="font-semibold text-2xl text-cyan-200 break-words">
+                      {contributor.login}
+                    </span>
+                  </div>
+                  <div className="stats flex justify-center items-center gap-4 w-full">
+                    <span className="text-slate-300 truncate">
+                      {contributor.contributions} Contributions
+                    </span>
+                    <button
+                      onClick={() => window.open(contributor.html_url, "_blank")}
+                      className="bg-violet-700 py-1 px-3 rounded-sm max-w-xs truncate shadow-md hover:shadow-lg transition-all duration-300"
+                    >
+                      View Profile
+                    </button>
+                  </div>
+                  <div className="stats flex justify-center items-center gap-4 w-full">
+                    {/* Certificate Button */} 
+                    <button
+                      className="mt-4 bg-[#e11d48] hover:bg-[#be123c] text-white font-semibold py-2 px-4 rounded-lg shadow-md 
+                      transition-all duration-200"
+                     onClick={() => handleAddCertificate(contributor)}
+                    >
+                     Certificate
+                    </button>
+                  </div>
+
                 {stat.icon}
                 <div className="flex flex-col gap-2">
                   <span className="text-xl sm:text-2xl text-gray-800 dark:text-slate-300">
@@ -142,6 +186,24 @@ function Contributors() {
           </div>
         </div>
       </div>
+
+      {/* Certificate Generator Modal */}
+      {selectedContributor && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-2xl max-w-lg w-full text-center relative">
+            {/* Close Button */}
+            <button className="absolute top-3 right-3 text-red-500 dark:text-red-400 hover:text-gray-800 dark:hover:text-red-300 transition-all" onClick={() => setSelectedContributor(null)}>
+              <XCircle className="w-6 h-6" />
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4 text-blue-700 dark:text-yellow-400">
+              Certificate for {selectedContributor.login}
+            </h2>
+            <CertificateGenerator username={selectedContributor.login} />
+          </div>
+        </div>
+      )}
+    </div>
     </>
   );
 }
