@@ -59,7 +59,7 @@ const CertificateGenerator = ({ username }) => {
         <h1 className="text-3xl font-bold text-blue-700 mb-2 relative">
           Certificate of Appreciation
         </h1>
-        <p className="text-lg text-gray-700 relative">This is proudly presented to</p>
+        <p className="text-lg font-bold text-gray-700 relative">This is proudly presented to</p>
 
         {loading && <p className="text-gray-500 mt-4 relative">Fetching GitHub Profile...</p>}
         {error && <p className="text-red-500 mt-4 relative">{error}</p>}
@@ -74,25 +74,25 @@ const CertificateGenerator = ({ username }) => {
                 crossOrigin="anonymous"
               />
             </a>
-            <h2 className="mt-2 text-2xl font-semibold text-gray-900">
+            <h2 className="mt-2 text-2xl font-bold text-gray-900">
               {profile.name || username}
             </h2>
             <p className="text-gray-600">@{username}</p>
           </div>
         )}
 
-        <p className="mt-4 text-lg text-gray-700 text-center px-4 relative">
-          For valuable contributions to react-blog Project in Social Winter of Code (SWoC) from January 1, 2025 to March 1, 2025.
+        <p className="mt-4 font-bold text-lg text-gray-700 text-center px-4 relative">
+          For valuable contributions to ShopSphere Project in Social Winter of Code (SWoC) from January 1, 2025 to March 1, 2025.
         </p>
 
         <div className="mt-8 flex justify-between w-full px-6 text-gray-700 relative">
           <div className="text-left">
-            <p className="font-semibold text-sm">Project Mentor</p>
-            <p className="text-sm">OkenHaha</p>
+            <p className="font-bold text-sm">Project Mentor</p>
+            <p className="font-bold text-sm">Anwishta Ghosh</p>
           </div>
           <div className="text-right">
-            <p className="font-semibold text-sm">Date</p>
-            <p className="text-sm">{new Date().toLocaleDateString()}</p>
+            <p className="font-bold text-sm">Date</p>
+            <p className="font-bold text-sm">{new Date().toLocaleDateString()}</p>
           </div>
         </div>
       </div>
