@@ -7,11 +7,16 @@ import { GoRepoForked } from "react-icons/go";
 import { FaPeopleLine } from "react-icons/fa6";
 import { PiUserCircleDashedFill } from "react-icons/pi";
 import Scrollbtn from "../../components/scrollbtn";
+import CertificateGenerator from "./CertificateGenerator";
+import { XCircle } from "lucide-react";
+
 
 function Contributors() {
   const [allcontributors, setAllContributors] = useState([]);
   const [repoData, setRepoData] = useState({});
   const [totalContributions, setTotalContributions] = useState(null);
+  const [selectedContributor, setSelectedContributor] = useState(null);
+
 
   useEffect(() => {
     const fetchContributors = async () => {
@@ -49,6 +54,10 @@ function Contributors() {
 
     fetchContributors();
   }, []);
+
+  const handleAddCertificate = (contributor) => {
+    setSelectedContributor(contributor);
+  };
 
   return (
     <>
@@ -118,7 +127,7 @@ function Contributors() {
                     <button
                       className="mt-4 bg-[#e11d48] hover:bg-[#be123c] text-white font-semibold py-2 px-4 rounded-lg shadow-md 
                       transition-all duration-200"
-                     onClick={() => handleAddCertificate(item)}
+                     onClick={() => handleAddCertificate(contributor)}
                     >
                      Certificate
                     </button>
@@ -129,6 +138,22 @@ function Contributors() {
           </div>
         </div>
       </div>
+      {/* Certificate Generator Modal */}
+      {selectedContributor && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-md z-50 p-4">
+          <div className="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-2xl max-w-lg w-full text-center relative">
+            {/* Close Button */}
+            <button className="absolute top-3 right-3 text-red-500 dark:text-red-400 hover:text-gray-800 dark:hover:text-red-300 transition-all" onClick={() => setSelectedContributor(null)}>
+              <XCircle className="w-6 h-6" />
+            </button>
+
+            <h2 className="text-2xl font-bold mb-4 text-blue-700 dark:text-yellow-400">
+              Certificate for {selectedContributor.login}
+            </h2>
+            <CertificateGenerator username={selectedContributor.login} />
+          </div>
+        </div>
+      )}
     </div>
     </>
   );
