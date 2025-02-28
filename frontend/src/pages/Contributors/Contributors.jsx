@@ -113,6 +113,16 @@ function Contributors() {
                       View Profile
                     </button>
                   </div>
+                  <div className="stats flex justify-center items-center gap-4 w-full">
+                    {/* Certificate Button */} 
+                    <button
+                      className="mt-4 bg-[#e11d48] hover:bg-[#be123c] text-white font-semibold py-2 px-4 rounded-lg shadow-md 
+                      transition-all duration-200"
+                     onClick={() => handleAddCertificate(item)}
+                    >
+                     Certificate
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
