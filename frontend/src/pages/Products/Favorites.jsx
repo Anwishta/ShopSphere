@@ -3,14 +3,30 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../components/CartContext";
 import { toast } from "react-toastify";
 import HeartIcon from "./HeartIcon";
+
+import { useState, useMemo } from "react";
+
 import { useState } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import Scrollbtn from "../../components/scrollbtn";
+
 
 const Favorites = () => {
   const favorites = useSelector((state) => state.favorites?.favorites || []);
   const { addToCart } = useCart();
   const [sortBy, setSortBy] = useState("");
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Optimize sorting using useMemo to avoid unnecessary recalculations
+  const filteredFavorites = useMemo(() => {
+    return [...favorites].sort((a, b) => {
+      if (sortBy === "cheapest") return a.price - b.price;
+      if (sortBy === "expensive") return b.price - a.price;
+      return 0; // No sorting
+    });
+  }, [favorites, sortBy]);
+
   const { isDarkMode } = useTheme();
 
   // Apply filtering based on the selected filter
@@ -23,6 +39,7 @@ const Favorites = () => {
     return 0;
   });
 
+
   return (
     <>
     <Scrollbtn />
@@ -32,6 +49,42 @@ const Favorites = () => {
           <h1 className="text-4xl font-bold tracking-wide mb-2">
             Your Favorites
           </h1>
+
+          <p className="text-xl text-white py-4">
+            {favorites.length === 0
+              ? "No favorite products yet"
+              : `${favorites.length} favorite products`}
+          </p>
+        </div>
+
+        {/* Custom Sorting Dropdown */}
+        <div className="text-center mb-8 relative inline-block">
+          <label className="text-white font-semibold mr-4">Sort By: Price</label>
+          <div
+            className="px-4 py-2 rounded bg-gray-300 text-black font-semibold cursor-pointer transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-400"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {sortBy ? (sortBy === "cheapest" ? "Price: The cheapest" : "Price: The most expensive") : "Select"}
+          </div>
+          {isOpen && (
+            <div className="absolute left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-300 rounded-md shadow-md z-10 transition-all duration-300 ease-in-out transform scale-95 opacity-0 hover:scale-100 hover:opacity-100">
+              <div className="py-2">
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("cheapest"); setIsOpen(false); }}
+                >
+                  The cheapest
+                </div>
+                <div
+                  className="px-4 py-2 hover:bg-gray-400 cursor-pointer"
+                  onClick={() => { setSortBy("expensive"); setIsOpen(false); }}
+                >
+                  The most expensive
+                </div>
+              </div>
+            </div>
+          )}
+
           <p className={`text-lg py-4 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
             {favorites.length === 0 ? "No favorite products yet" : `${favorites.length} favorite products`}
           </p>
@@ -53,6 +106,7 @@ const Favorites = () => {
             <option value="cheapest">Price: The cheapest</option>
             <option value="expensive">Price: The most expensive</option>
           </select>
+
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 mx-16 my-16">
@@ -64,9 +118,21 @@ const Favorites = () => {
                   isDarkMode ? "bg-gray-800" : "bg-white"
                 }`}
               >
+
+                <h2 className="text-xl font-bold text-white mb-2 pr-8">
+                  {product.name}
+                </h2>
+                <p className="text-lg text-white font-semibold mb-4">
+                  ${product.price}
+                </p>
+
+                {/* Image with aspect ratio fix */}
+                <div className="w-full aspect-square bg-gray-200 rounded-md flex items-center justify-center text-gray-500 relative overflow-hidden">
+
                 <h2 className="text-xl font-bold mb-2 pr-8">{product.name}</h2>
                 <p className="text-lg font-semibold mb-4">${product.price}</p>
                 <div className="w-full h-40 bg-gray-200 rounded-md flex items-center justify-center text-gray-500 relative">
+
                   <img
                     src={product.image}
                     alt={product.name}
@@ -74,14 +140,20 @@ const Favorites = () => {
                   />
                   <HeartIcon className="absolute top-2 right-2 cursor-pointer z-10" product={product} />
                 </div>
+
+                {/* Updated Add to Cart button styling */}
                 <button
                   onClick={() => {
                     addToCart(product);
                     toast.success("Added to cart");
                   }}
+
+                  className="w-full mt-4 bg-pink-500 text-white px-6 py-3 rounded-lg hover:bg-pink-600 transition-transform transform hover:scale-105"
+
                   className={`w-full mt-4 font-semibold py-2 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:scale-105 ${
                     isDarkMode ? "bg-rose-500 hover:bg-rose-600" : "bg-rose-600 hover:bg-rose-700 text-white"
                   }`}
+
                 >
                   Add to Cart
                 </button>
@@ -89,6 +161,14 @@ const Favorites = () => {
             ))
           ) : (
             <div className="col-span-full text-center">
+
+              <p className="text-white text-xl font-semibold mb-4">
+                Your favorites list is empty 😔
+              </p>
+              <Link
+                to="/shop"
+                className="bg-pink-500 text-white px-6 py-3 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 hover:bg-pink-600 cursor-pointer"
+
               <p className={`text-lg mb-4 ${isDarkMode ? "text-gray-400" : "text-gray-600"}`}>
                 Your favorites list is empty
               </p>
@@ -97,6 +177,7 @@ const Favorites = () => {
                 className={`px-6 py-3 rounded-lg transition-colors inline-block shadow-md ${
                   isDarkMode ? "bg-rose-500 hover:bg-rose-600 text-white" : "bg-rose-600 hover:bg-rose-700 text-white"
                 }`}
+
               >
                 Go Shopping
               </Link>
