@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useDistributorRegisterMutation } from "../redux/api/userApiSlice";
@@ -28,6 +28,10 @@ const DistributorRegister = () => {
     const navigate = useNavigate();
 
     const [register, { isLoading }] = useDistributorRegisterMutation();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
