@@ -187,14 +187,28 @@ const Navigation = () => {
                   <AiOutlineLogin size={26} />
                   <span className="text-lg">LOGIN</span>
                 </Link>
+                <div className="space-y-1">
+                  <div className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg">
+                    <AiOutlineUserAdd size={26} />
+                    <span className="text-lg">REGISTER</span>
+                  </div>
+                <div className="pl-10 space-y-1">
                 <Link
                   to="/register"
-                  className="flex items-center space-x-4 p-2 hover:bg-gray-800 rounded-lg"
+                  className="block text-sm p-2 hover:bg-gray-800 rounded-lg"
                   onClick={() => setShowMobileMenu(false)}
-                >
-                  <AiOutlineUserAdd size={26} />
-                  <span className="text-lg">REGISTER</span>
+                  >
+                  Customer
                 </Link>
+                <Link
+                  to="/distributor/register"
+                  className="block text-sm p-2 hover:bg-gray-800 rounded-lg"
+                  onClick={() => setShowMobileMenu(false)}
+                   >
+                  Distributor
+                </Link>
+                </div>
+              </div>
               </div>
             )}
           </div>
@@ -202,7 +216,7 @@ const Navigation = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className={`hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-5 h-[100vh] transition-all duration-300 ease-in-out z-40
+        <div className={`hidden lg:flex fixed inset-y-0 left-0 flex-col justify-between p-5 h-[100vh] overflow-visible transition-all duration-300 ease-in-out z-40
         ${isDarkMode ? "bg-black text-white" : "bg-white text-black"}`} 
         id="navigation-container">
         <div className="flex flex-col space-y-8">
@@ -289,10 +303,26 @@ const Navigation = () => {
                 <AiOutlineLogin className="nav-icon" />
                 <span className="nav-item-name">LOGIN</span>
               </Link>
-              <Link to="/register" className="flex items-center hover:translate-x-2 transition-transform p-2">
-                <AiOutlineUserAdd className="nav-icon" />
-                <span className="nav-item-name">REGISTER</span>
-              </Link>
+              <div className="space-y-1">
+                <div className="flex items-center hover:translate-x-2 transition-transform p-2">
+                  <AiOutlineUserAdd className="nav-icon" />
+                    <span className="nav-item-name ml-4">REGISTER</span>
+                </div>
+              <div className="ml-10 space-y-1">
+                <Link
+                  to="/register"
+                  className="block text-sm px-2 py-1 hover:text-rose-500 transition"
+                  >
+                  Customer
+                </Link>
+                <Link
+                  to="/distributor/register"
+                  className="block text-sm px-2 py-1 hover:text-rose-500 transition"
+                  >
+                  Distributor
+                </Link>
+              </div>
+            </div>
             </div>
           )}
         </div>
