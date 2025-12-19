@@ -36,6 +36,10 @@ const Register = () => {
   const { isDarkMode } = useTheme();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     if (userInfo) {
       navigate(redirect);
     }
